@@ -14,6 +14,12 @@
         <p><code>$('.js-textarea-minrows').autoResize({minRows: 3});</code></p>
         <textarea class="js-textarea-minrows" rows="3"></textarea>
 
+        <p><code>$('.js-textarea-maxrows').autoResize({maxRows: 3});</code></p>
+        <textarea class="js-textarea-maxrows" rows="1">1&#13;&#10;2&#13;&#10;3&#13;&#10;4&#13;&#10;5</textarea>
+
+        <p><code>$('.js-textarea-minmaxrows').autoResize({minRows: 2, maxRows: 3});</code></p>
+        <textarea class="js-textarea-minmaxrows" rows="2"></textarea>
+
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-2.2.4.min.js"><\/script>')</script>
 
@@ -22,6 +28,8 @@
             $(function() {
                 $('.js-textarea').autoResize();
                 $('.js-textarea-minrows').autoResize({minRows: 3});
+                $('.js-textarea-maxrows').autoResize({maxRows: 3});
+                $('.js-textarea-minmaxrows').autoResize({minRows: 2, maxRows: 3});
             });
         </script>
     </body>

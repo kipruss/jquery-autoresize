@@ -1,5 +1,5 @@
 /*!
- * jQuery textarea autoResize plugin v0.0.1 - 2016-08-30
+ * jQuery textarea autoResize plugin v0.0.2 - 2016-08-31
  * http://github.com/kipruss/jquery-autoresize
  * Author: Konstantin Baev for Magic Web Solutions ( http://magicwebsolutions.co.uk/ )
  * Licensed under the MIT license
@@ -12,13 +12,15 @@
 
         defaults = {
             resize: $.noop,
-            'minRows': 1
+            'minRows': 1,
+            'maxRows': 0
         };
 
     $.fn.autoResize = function(options) {
         var settings = $.extend({}, defaults, options);
 
         this.filter('textarea').each(function() {
+
             var $textarea = $(this).css({
                     'overflow-y': 'hidden',
                     'height': 'auto',
@@ -49,7 +51,13 @@
                 var lineHeight = parseInt($textarea.css('line-height'));
                 textarea.rows = settings.minRows;
                 var rows = Math.ceil((textarea.scrollHeight - textarea.baseScrollHeight) / lineHeight) + 1;
-                textarea.rows = Math.max(rows, settings.minRows);
+                if (settings.maxRows > settings.minRows && rows > settings.maxRows) {
+                    textarea.rows = settings.maxRows;
+                    $textarea.css({ 'overflow-y': 'auto' });
+                } else {
+                    textarea.rows = Math.max(rows, settings.minRows);
+                    $textarea.css({ 'overflow-y': 'hidden' });
+                }
             };
 
             if (!textarea.rows || textarea.rows < settings.minRows) {

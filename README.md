@@ -9,11 +9,16 @@ A demo example can be found at [kipruss.github.io/jquery-autoresize](http://kipr
 
 ### Usage
 
-Load the plugin and use jQuery to find the desired `textarea` elements on which to call the plugin method.
+Load the plugin and use jQuery to find the desired `textarea` elements on which to call the plugin method. Setting a parameter `rows` in html code
+is appropriate to avoid a shake of the textarea while a page is loading.
+This parameter might be equal to parameter `minRows` or 1 if parameter
+`minRows` is not specified.
 
 ```html
 <textarea class="js-textarea" rows="1"></textarea>
 <textarea class="js-textarea-minrows" rows="3"></textarea>
+<textarea class="js-textarea-maxrows" rows="1"></textarea>
+<textarea class="js-textarea-minmaxrows" rows="2"></textarea>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="js/jquery.autoresize.min.js"></script>
@@ -21,6 +26,8 @@ Load the plugin and use jQuery to find the desired `textarea` elements on which 
     $(function() {
         $('.js-textarea').autoResize();
         $('.js-textarea-minrows').autoResize({minRows: 3});
+        $('.js-textarea-maxrows').autoResize({maxRows: 3});
+        $('.js-textarea-minmaxrows').autoResize({minRows: 2, maxRows: 3});
     });
 </script>
 ```
